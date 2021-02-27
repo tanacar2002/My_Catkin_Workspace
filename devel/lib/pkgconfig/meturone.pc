@@ -1,0 +1,8 @@
+prefix=/home/tan/Desktop/ROS/workspace/devel
+
+Name: meturone
+Description: Description of meturone
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: message_runtime

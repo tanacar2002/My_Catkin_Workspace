@@ -140,6 +140,8 @@ include_directories(
 add_executable(tanpub src/tanpub.cpp)
 add_executable(movestar src/movestar.cpp src/vector3.cpp)
 add_executable(movecircle src/movecircle.cpp src/vector3.cpp)
+add_executable(mission1 src/mission1.cpp src/vector3.cpp)
+add_executable(mission2 src/mission2.cpp src/vector3.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -152,6 +154,8 @@ add_executable(movecircle src/movecircle.cpp src/vector3.cpp)
 add_dependencies(tanpub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(movestar ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(movecircle ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(mission1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(mission2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(tanpub
@@ -163,6 +167,14 @@ target_link_libraries(movestar
 )
 
 target_link_libraries(movecircle
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(mission1
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(mission2
   ${catkin_LIBRARIES}
 )
 

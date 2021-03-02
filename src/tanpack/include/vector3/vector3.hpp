@@ -8,6 +8,7 @@ struct Vector3
     Vector3 (float,float,float);
 
     float getRlength () const;
+    Vector3 getNormalized() const;
     auto getPos () const;
 
     Vector3 operator+ (const Vector3&) const;

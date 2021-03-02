@@ -136,6 +136,8 @@
 /home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/install/local.dir
 /home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/list_install_components.dir
 /home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/edit_cache.dir
+/home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/mission2.dir
+/home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/mission1.dir
 /home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/install/strip.dir
 /home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/movecircle.dir
 /home/tan/Desktop/ROS/workspace/build/tanpack/CMakeFiles/movestar.dir

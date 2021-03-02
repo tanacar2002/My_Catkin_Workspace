@@ -1377,6 +1377,32 @@ talker/fast:
 .PHONY : talker/fast
 
 #=============================================================================
+# Target rules for targets named mission2
+
+# Build rule for target.
+mission2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mission2
+.PHONY : mission2
+
+# fast build rule for target.
+mission2/fast:
+	$(MAKE) -f tanpack/CMakeFiles/mission2.dir/build.make tanpack/CMakeFiles/mission2.dir/build
+.PHONY : mission2/fast
+
+#=============================================================================
+# Target rules for targets named mission1
+
+# Build rule for target.
+mission1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mission1
+.PHONY : mission1
+
+# fast build rule for target.
+mission1/fast:
+	$(MAKE) -f tanpack/CMakeFiles/mission1.dir/build.make tanpack/CMakeFiles/mission1.dir/build
+.PHONY : mission1/fast
+
+#=============================================================================
 # Target rules for targets named movecircle
 
 # Build rule for target.
@@ -1742,6 +1768,8 @@ help:
 	@echo "... trajectory_msgs_generate_messages_nodejs"
 	@echo "... listener"
 	@echo "... talker"
+	@echo "... mission2"
+	@echo "... mission1"
 	@echo "... movecircle"
 	@echo "... movestar"
 	@echo "... tanpub"

@@ -53,7 +53,7 @@ int main(int argc,char** argv)
     drone.takeoff(3);
     ros::Duration(5.0).sleep();
 
-    ROS_INFO("Drawing a star!");
+    ROS_INFO("Drawing a circle!");
     drone.moveGlobal(vertices[0].getPos());
     ros::Duration(3.0).sleep();
     for(Vector3& vertex : interpolpath(vertices,2))

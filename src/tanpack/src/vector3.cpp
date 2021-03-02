@@ -16,6 +16,12 @@ float Vector3::getRlength() const
     return sqrt(this->x*this->x+this->y*this->y+this->z*this->z);
 }
 
+Vector3 Vector3::getNormalized() const
+{
+    float r = this->getRlength();
+    return (*this)/r;
+}
+
 Vector3 Vector3::operator+(const Vector3& other) const
 {
     return {this->x+other.x,this->y+other.y,this->z+other.z};

@@ -134,6 +134,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/tan/Desktop/ROS/workspace/build/meturone/cmake_install.cmake")
   include("/home/tan/Desktop/ROS/workspace/build/beginner_tutorials/cmake_install.cmake")
   include("/home/tan/Desktop/ROS/workspace/build/tanpack/cmake_install.cmake")
+  include("/home/tan/Desktop/ROS/workspace/build/ceng460hw1/cmake_install.cmake")
 
 endif()
 

@@ -1,2 +1,2 @@
-beginner_tutorials:meturone:tanpack
+beginner_tutorials:ceng460hw1:meturone:tanpack
 -DCATKIN_DEVEL_PREFIX=/home/tan/Desktop/ROS/workspace/devel -DCMAKE_INSTALL_PREFIX=/home/tan/Desktop/ROS/workspace/install -G Unix Makefiles

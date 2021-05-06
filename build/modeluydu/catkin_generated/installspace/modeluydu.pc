@@ -1,8 +1,0 @@
-prefix=/home/tan/Desktop/ROS/workspace/install
-
-Name: modeluydu
-Description: Description of modeluydu
-Version: 0.1.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

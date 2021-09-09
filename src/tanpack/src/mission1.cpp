@@ -4,8 +4,10 @@
 #include "vector3/vector3.hpp"
 #include <cmath>
 
-#define MOVEMENT_DELAY 0.5
-#define MOVEMENT_HEIGHT 5.0f
+#define MOVEMENT_DELAY 1.0f
+#define MOVEMENT_HEIGHT 10.0f
+#define LAST_WAIT_TIME 10.0f
+#define TAKEOFF_WAIT 10.0f
 
 auto Vector3::getPos() const
 {
@@ -89,18 +91,22 @@ int main(int argc,char** argv)
     
     Drone drone = Drone(n);
 
-    ROS_INFO("Taking off and waiting...");
-    drone.takeoff(MOVEMENT_HEIGHT);
+    ROS_INFO("Arming and waiting...");
+    drone.arm();
     ros::Duration(5.0).sleep();
 
+    ROS_INFO("Taking off and waiting...");
+    drone.takeoff(MOVEMENT_HEIGHT);
+    ros::Duration(TAKEOFF_WAIT).sleep();
+
     ROS_INFO("Starting!");
-    for(Vector3& vertex : approxipolpath(vertices,120))
+    for(Vector3& vertex : approxipolpath(vertices,150))
     {
         drone.moveGlobal(vertex.getPos());
         ros::Duration(MOVEMENT_DELAY).sleep();
     }
     ROS_INFO("Finished!");
-    ros::Duration(3.0).sleep();
+    ros::Duration(LAST_WAIT_TIME).sleep();
     ROS_INFO("Landing...");
     if(!drone.land())drone.moveGlobal({0.0f,0.0f,0.0f,false});
 }

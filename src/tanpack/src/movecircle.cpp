@@ -4,7 +4,10 @@
 #include "vector3/vector3.hpp"
 #include <cmath>
 
-#define MOVEMENT_DELAY 0.5
+#define MOVEMENT_DELAY 1.0 //0.5
+
+#define HEIGHT 10.0f
+#define RADIUS 5
 
 auto Vector3::getPos() const
 {
@@ -35,12 +38,12 @@ int main(int argc,char** argv)
     std::vector<Vector3> vertices;
     const int polyind = 20;
     vertices.reserve(polyind+3);
-    vertices.emplace_back(0.0f,0.0f,3.0f);
+    vertices.emplace_back(0.0f,0.0f,HEIGHT);
     for(int i = 0;i <= polyind; i++)
     {
-        vertices.emplace_back(3*cos(2*i*M_PI/polyind),3*sin(2*i*M_PI/polyind),3.0f);
+        vertices.emplace_back(RADIUS*cos(2*i*M_PI/polyind),RADIUS*sin(2*i*M_PI/polyind),HEIGHT);
     }
-    vertices.emplace_back(0.0f,0.0f,3.0f);
+    vertices.emplace_back(0.0f,0.0f,HEIGHT);
 
     ros::init(argc,argv,"tanpub");
     ros::Time::init();
@@ -49,9 +52,12 @@ int main(int argc,char** argv)
     
     Drone drone = Drone(n);
 
-    ROS_INFO("Taking off and waiting...");
-    drone.takeoff(3);
+    ROS_INFO("Arming and waiting...");
+    drone.arm();
     ros::Duration(5.0).sleep();
+    ROS_INFO("Taking off and waiting...");
+    drone.takeoff(HEIGHT);
+    ros::Duration(20.0).sleep();
 
     ROS_INFO("Drawing a circle!");
     drone.moveGlobal(vertices[0].getPos());

@@ -61,14 +61,14 @@ int main(int argc,char** argv)
 
     ROS_INFO("Drawing a circle!");
     drone.moveGlobal(vertices[0].getPos());
-    ros::Duration(5.0).sleep();
+    ros::Duration(3.0).sleep();
     for(Vector3& vertex : interpolpath(vertices,2))
     {
         drone.moveGlobal(vertex.getPos());
         ros::Duration(MOVEMENT_DELAY).sleep();
     }
 
-    ros::Duration(5.0).sleep();
+    ros::Duration(3.0).sleep();
     ROS_INFO("Landing");
     if(!drone.land())drone.moveGlobal({0.0f,0.0f,0.0f,false});
 }

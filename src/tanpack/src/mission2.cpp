@@ -83,6 +83,10 @@ int main(int argc,char** argv)
     
     Drone drone = Drone(n);
 
+    ROS_INFO("Arming and waiting...");
+    drone.arm();
+    ros::Duration(5.0).sleep();
+
     ROS_INFO("Taking off and waiting...");
     drone.takeoff(MOVEMENT_HEIGHT);
     ros::Duration(5.0).sleep();

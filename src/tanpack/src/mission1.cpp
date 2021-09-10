@@ -5,7 +5,7 @@
 #include <cmath>
 
 #define MOVEMENT_DELAY 0.5
-#define MOVEMENT_HEIGHT 5.0f
+#define MOVEMENT_HEIGHT 10.0f
 
 auto Vector3::getPos() const
 {
@@ -89,12 +89,16 @@ int main(int argc,char** argv)
     
     Drone drone = Drone(n);
 
+    ROS_INFO("Arming and waiting...");
+    drone.arm();
+    ros::Duration(5.0).sleep();
+
     ROS_INFO("Taking off and waiting...");
     drone.takeoff(MOVEMENT_HEIGHT);
     ros::Duration(5.0).sleep();
 
     ROS_INFO("Starting!");
-    for(Vector3& vertex : approxipolpath(vertices,120))
+    for(Vector3& vertex : approxipolpath(vertices,150))
     {
         drone.moveGlobal(vertex.getPos());
         ros::Duration(MOVEMENT_DELAY).sleep();

@@ -53,6 +53,7 @@ int main(int argc,char** argv)
     ROS_INFO("Arming and waiting...");
     drone.arm();
     ros::Duration(5.0).sleep();
+    
     ROS_INFO("Taking off and waiting...");
     drone.takeoff(HEIGHT);
     ros::Duration(20.0).sleep();

@@ -4,7 +4,7 @@
 #include "vector3/vector3.hpp"
 #include <cmath>
 
-#define MOVEMENT_DELAY 1.0 //0.5
+#define MOVEMENT_DELAY 0.8 //0.5
 
 #define HEIGHT 10.0f
 #define RADIUS 5

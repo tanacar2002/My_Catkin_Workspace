@@ -4,10 +4,10 @@
 #include "vector3/vector3.hpp"
 #include <cmath>
 
-#define MOVEMENT_DELAY 1.0 //0.5
+#include "move/Mesafe.h"
 
-#define HEIGHT 10.0f
-#define RADIUS 5
+#define HEIGHT 10.0
+#define MOVEMENT_DELAY 0.1
 
 auto Vector3::getPos() const
 {
@@ -33,19 +33,17 @@ std::vector<Vector3> interpolpath(std::vector<Vector3>& points,int iter)
 
 
 
+
+
 int main(int argc,char** argv)
 {
     std::vector<Vector3> vertices;
-    const int polyind = 20;
-    vertices.reserve(polyind+3);
-    vertices.emplace_back(0.0f,0.0f,HEIGHT);
-    for(int i = 0;i <= polyind; i++)
-    {
-        vertices.emplace_back(RADIUS*cos(2*i*M_PI/polyind),RADIUS*sin(2*i*M_PI/polyind),HEIGHT);
-    }
-    vertices.emplace_back(0.0f,0.0f,HEIGHT);
+    vertices.emplace_back(0.0,0.0,HEIGHT);
+    vertices.emplace_back(20.0,0.0,HEIGHT);
 
-    ros::init(argc,argv,"moveCircle");
+    bool isObjFound = false;
+
+    ros::init(argc,argv,"cv_test");
     ros::Time::init();
     ros::NodeHandle n;
     ros::Rate rate(0.2);
@@ -59,16 +57,26 @@ int main(int argc,char** argv)
     drone.takeoff(HEIGHT);
     ros::Duration(20.0).sleep();
 
-    ROS_INFO("Drawing a circle!");
-    drone.moveGlobal(vertices[0].getPos());
-    ros::Duration(5.0).sleep();
-    for(Vector3& vertex : interpolpath(vertices,2))
+    for(Vector3& vertex : interpolpath(vertices,50))
     {
         drone.moveGlobal(vertex.getPos());
         ros::Duration(MOVEMENT_DELAY).sleep();
+        double object_x,object_y,object_x2,object_y2;
+        if(drone.wherePool(object_x,object_y,object_x2,object_y2)){
+            ROS_INFO("Object detected");
+            drone.moveRelative({object_x,object_y,HEIGHT,false});
+            while(sqrt(object_x*object_x+object_y*object_y) > 0.5){
+                drone.wherePool(object_x,object_y,object_x2,object_y2);
+            }
+            drone.moveRelative({object_x2,object_y2,HEIGHT,false});
+            while(sqrt(object_x2*object_x2+object_y2*object_y2) > 0.3){
+                drone.wherePool(object_x,object_y,object_x2,object_y2);
+            }
+            ros::Duration(2.0).sleep();
+            break;
+        }
     }
 
-    ros::Duration(5.0).sleep();
-    ROS_INFO("Landing");
-    if(!drone.land())drone.moveGlobal({0.0f,0.0f,0.0f,false});
+
+    drone.land();
 }
